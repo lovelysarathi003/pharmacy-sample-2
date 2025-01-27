@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy eCommerce</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <h1>PharmaShop</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Section: Featured Products -->
+    <section id="home" class="home">
+        <h2>Featured Products</h2>
+        <div class="product-list">
+            <div class="product-card">
+                <img src="Paracetamol.jpg" alt="Medicine 1">
+                <h3>Peracetamol</h3>
+                <p>10.00</p>
+                <button class="add-to-cart" data-name="Medicine 1" data-price="10">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="Cheston.jpg" alt="Medicine 2">
+                <h3>Cheston</h3>
+                <p>20.00</p>
+                <button class="add-to-cart" data-name="Medicine 2" data-price="20">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <img src="aspirin.jpg" alt="Medicine 3">
+                <h3>aspirin</h3>
+                <p>15.00</p>
+                <button class="add-to-cart" data-name="Medicine 3" data-price="15">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section id="cart" class="cart">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <button id="checkout">Checkout</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 PharmaShop. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
