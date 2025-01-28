@@ -1,60 +1,66 @@
-let cart = [];
+// Simulated product data and notifications
+const users = [
+    { email: "test@pharmacy.com", password: "password123", name: "John Doe", orders: [] }
+];
 
-const addToCartButtons = document.querySelectorAll('.add-to-cart');
-const cartCount = document.getElementById('cart-count');
-const cartItems = document.getElementById('cart-items');
+let currentUser = null;
 
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const productName = e.target.getAttribute('data-name');
-        const productPrice = parseFloat(e.target.getAttribute('data-price'));
-        
-        // Add the product to the cart array
-        cart.push({ name: productName, price: productPrice });
+// Login function
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const user = users.find(u => u.email === email && u.password === password);
 
-        // Update cart count
-        cartCount.innerText = cart.length;
-
-        // Update cart display
-        updateCart();
-    });
+    if (user) {
+        currentUser = user;
+        showHomePage();
+    } else {
+        document.getElementById('error-message').innerText = "Invalid email or password.";
+    }
 });
 
-function updateCart() {
-    cartItems.innerHTML = '';
+// Show home page after login
+function showHomePage() {
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('home-page').style.display = 'block';
+}
 
-    if (cart.length === 0) {
-        cartItems.innerHTML = '<p>Your cart is empty</p>';
+// Product buying logic
+function addToCart(productName) {
+    if (currentUser) {
+        alert(`You bought ${productName}. We'll send a notification when it's shipped.`);
+        currentUser.orders.push({ product: productName, status: 'Shipped' });
+        sendNotification(productName);
+        showAccountPage();
     } else {
-        cart.forEach((item, index) => {
-            const itemDiv = document.createElement('div');
-            itemDiv.classList.add('cart-item');
-            itemDiv.innerHTML = `
-                <p>${item.name} - $${item.price.toFixed(2)}</p>
-                <button class="remove-item" data-index="${index}">Remove</button>
-            `;
-            cartItems.appendChild(itemDiv);
-        });
-
-        // Add remove item functionality
-        const removeButtons = document.querySelectorAll('.remove-item');
-        removeButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const index = e.target.getAttribute('data-index');
-                cart.splice(index, 1);
-                cartCount.innerText = cart.length;
-                updateCart();
-            });
-        });
+        alert("Please login first.");
     }
 }
 
-// Checkout button functionality (for now just alerts)
-document.getElementById('checkout').addEventListener('click', () => {
-    if (cart.length > 0) {
-        let totalAmount = cart.reduce((acc, item) => acc + item.price, 0);
-        alert(`Total amount: $${totalAmount.toFixed(2)}\nProceeding to Checkout...`);
-    } else {
-        alert("Your cart is empty!");
-    }
-});
+// Notification simulation
+function sendNotification(productName) {
+    setTimeout(() => {
+        alert(`Your order for ${productName} is shipped!`);
+    }, 3000);
+}
+
+// Show account page with order tracking
+function showAccountPage() {
+    document.getElementById('home-page').style.display = 'none';
+    document.getElementById('account-page').style.display = 'block';
+
+    let ordersList = '';
+    currentUser.orders.forEach(order => {
+        ordersList += `<p>${order.product} - Status: ${order.status}</p>`;
+    });
+    document.getElementById('account-page').innerHTML += ordersList;
+}
+
+// Logout
+function logout() {
+    currentUser = null;
+    document.getElementById('account-page').style.display = 'none';
+    document.getElementById('login-page').style.display = 'block';
+}

@@ -3,61 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pharmacy eCommerce</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pharmacy Website</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">
-            <h1>PharmaShop</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#shop">Shop</a></li>
-                <li><a href="#cart">Cart (<span id="cart-count">0</span>)</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Main Section: Featured Products -->
-    <section id="home" class="home">
-        <h2>Featured Products</h2>
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <h2>Login to Your Account</h2>
+        <form id="login-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="error-message" id="error-message"></div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page" style="display:none;">
+        <h2>Welcome to Our Pharmacy</h2>
         <div class="product-list">
-            <div class="product-card">
-                <img src="Paracetamol.jpg" alt="Medicine 1">
-                <h3>Peracetamol</h3>
-                <p>10.00</p>
-                <button class="add-to-cart" data-name="Medicine 1" data-price="10">Add to Cart</button>
+            <div class="product">
+                <img src="medicine1.jpg" alt="Medicine 1">
+                <p>Medicine 1</p>
+                <button onclick="addToCart('Medicine 1')">Buy Now</button>
             </div>
-            <div class="product-card">
-                <img src="Cheston.jpg" alt="Medicine 2">
-                <h3>Cheston</h3>
-                <p>20.00</p>
-                <button class="add-to-cart" data-name="Medicine 2" data-price="20">Add to Cart</button>
+            <div class="product">
+                <img src="medicine2.jpg" alt="Medicine 2">
+                <p>Medicine 2</p>
+                <button onclick="addToCart('Medicine 2')">Buy Now</button>
             </div>
-            <div class="product-card">
-                <img src="aspirin.jpg" alt="Medicine 3">
-                <h3>aspirin</h3>
-                <p>15.00</p>
-                <button class="add-to-cart" data-name="Medicine 3" data-price="15">Add to Cart</button>
-            </div>
+            <!-- Add more products here -->
         </div>
-    </section>
+    </div>
 
-    <!-- Cart Section -->
-    <section id="cart" class="cart">
-        <h2>Your Cart</h2>
-        <div id="cart-items"></div>
-        <button id="checkout">Checkout</button>
-    </section>
+    <!-- About Page -->
+    <div id="about-page" class="page" style="display:none;">
+        <h2>About Us</h2>
+        <p>We are a trusted online pharmacy, offering a wide range of medications delivered to your door.</p>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 PharmaShop. All Rights Reserved.</p>
-    </footer>
+    <!-- Customer Account Page -->
+    <div id="account-page" class="page" style="display:none;">
+        <h2>Customer Account</h2>
+        <p>Your order details and shipping info.</p>
+        <button onclick="logout()">Logout</button>
+    </div>
 
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
